@@ -17,6 +17,10 @@
       <h2>Atividades Extracurriculares</h2>
       <div id="user-controls">
         <div id="user-status">
+          <button id="manage-announcements-button" class="icon-button manage-button" disabled>
+            <span class="user-icon">📢</span>
+            <span>Gerenciar anúncios</span>
+          </button>
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
             <span>Entrar</span>
@@ -30,6 +34,19 @@
     </header>
 
     <main>
+      <section id="announcements-section" class="hidden">
+        <div class="announcements-shell">
+          <div class="announcements-copy">
+            <p class="eyebrow">Avisos da escola</p>
+            <h3>Comunicados em destaque</h3>
+            <p id="announcements-summary">
+              Fique por dentro de prazos, eventos e recados importantes da semana.
+            </p>
+          </div>
+          <div id="announcements-feed" class="announcements-feed"></div>
+        </div>
+      </section>
+
       <section id="activities-container">
         <div class="main-content-layout">
           <!-- Left Sidebar for Filters -->
@@ -131,6 +148,75 @@
           <button type="submit">Entrar</button>
         </form>
         <div id="login-message" class="hidden message"></div>
+      </div>
+    </div>
+
+    <div id="announcements-modal" class="modal hidden">
+      <div class="modal-content modal-content-wide">
+        <span class="close-announcements-modal">&times;</span>
+        <div class="modal-header-block">
+          <p class="eyebrow">Central de anúncios</p>
+          <h3>Gerenciar comunicados</h3>
+          <p>Mantenha os avisos publicados atualizados com datas de vigência claras.</p>
+        </div>
+
+        <div class="announcements-manager-layout">
+          <div class="announcement-list-panel">
+            <div class="panel-heading">
+              <h4>Anúncios existentes</h4>
+              <button id="new-announcement-button" class="secondary-button">Novo anúncio</button>
+            </div>
+            <div id="announcements-admin-list" class="announcements-admin-list"></div>
+          </div>
+
+          <div class="announcement-editor-panel">
+            <div class="panel-heading">
+              <h4 id="announcement-form-title">Novo anúncio</h4>
+            </div>
+            <form id="announcement-form" class="announcement-form">
+              <div class="form-group">
+                <label for="announcement-title">Título</label>
+                <input
+                  type="text"
+                  id="announcement-title"
+                  maxlength="80"
+                  required
+                  placeholder="Ex.: Semana de matrículas em clubes"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="announcement-message">Mensagem</label>
+                <textarea
+                  id="announcement-message"
+                  maxlength="400"
+                  required
+                  placeholder="Escreva um comunicado claro e objetivo para alunos e responsáveis."
+                ></textarea>
+              </div>
+
+              <div class="date-grid">
+                <div class="form-group">
+                  <label for="announcement-starts-on">Início</label>
+                  <input type="date" id="announcement-starts-on" />
+                </div>
+
+                <div class="form-group">
+                  <label for="announcement-expires-on">Expiração</label>
+                  <input type="date" id="announcement-expires-on" required />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" id="cancel-announcement-edit" class="secondary-button">
+                  Limpar
+                </button>
+                <button type="submit" id="save-announcement-button">Salvar anúncio</button>
+              </div>
+            </form>
+            <div id="announcement-form-message" class="hidden message"></div>
+          </div>
+        </div>
       </div>
     </div>
 
